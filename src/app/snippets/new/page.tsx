@@ -33,21 +33,21 @@ const SnippetCreatePage = () => {
           <input
             name="title"
             id="title"
-            className="border rounded p-2 w-full"
+            className="border rounded p-2 w-full bg-gray-800 border-gray-600 "
             type="text"
           />
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 ">
           <label className="w-12" htmlFor="code">
             Code
           </label>
           <textarea
             name="code"
             id="code"
-            className="border rounded p-2 w-full"
+            className="border rounded p-2 w-full bg-gray-800 border-gray-600"
           />
         </div>
-        <button type="submit" className="rounded p-2 bg-blue-200">
+        <button type="submit" className="rounded p-2 bg-blue-500">
           Submit
         </button>
       </div>
