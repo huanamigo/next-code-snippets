@@ -1,4 +1,4 @@
-const SnippetLoadPage = () => {
+const SnippetLoadingPage = () => {
   return (
     <div>
       <p>Loading...</p>
@@ -6,4 +6,4 @@ const SnippetLoadPage = () => {
   );
 };
 
-export default SnippetLoadPage;
+export default SnippetLoadingPage;
