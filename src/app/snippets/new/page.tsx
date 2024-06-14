@@ -1,29 +1,20 @@
-import { db } from '@/db';
-import { redirect } from 'next/navigation';
+'use client';
+
+import { createSnippet } from '@/actions/actions';
+import { Editor } from '@monaco-editor/react';
+import { useState } from 'react';
+import { useFormState } from 'react-dom';
 
 const SnippetCreatePage = () => {
-  async function createSnippet(formData: FormData) {
-    'use server';
+  const [formState, action] = useFormState(createSnippet, { message: '' });
+  const [codeValue, setCodeValue] = useState('');
 
-    // validate user input
-    const title = formData.get('title') as string;
-    const code = formData.get('code') as string;
-
-    // create new record
-    const snippet = await db.snippet.create({
-      data: {
-        title,
-        code,
-      },
-    });
-
-    console.log(snippet);
-    // redirect
-    redirect('/');
-  }
+  const handleCodeChange = (value: string = '') => {
+    setCodeValue(value);
+  };
 
   return (
-    <form action={createSnippet}>
+    <form action={action}>
       <h3 className="font-bold m-3">Create a Snippet</h3>
       <div className="flex flex-col gap-4">
         <div className="flex gap-4">
@@ -43,10 +34,26 @@ const SnippetCreatePage = () => {
           </label>
           <textarea
             name="code"
-            id="code"
-            className="border rounded p-2 w-full bg-gray-800 border-gray-600"
+            className="hidden"
+            value={codeValue}
+            onChange={(e) => setCodeValue(e.target.value)}
+          />
+          <Editor
+            height="40vh"
+            theme="vs-dark"
+            defaultLanguage="javascript"
+            defaultValue={codeValue}
+            options={{ minimap: { enabled: false } }}
+            onChange={handleCodeChange}
           />
         </div>
+
+        {formState.message ? (
+          <div className="my-2 p-2 bg-red-600 border rounded border-red-800">
+            {formState.message}
+          </div>
+        ) : null}
+
         <button type="submit" className="rounded p-2 bg-blue-500">
           Submit
         </button>

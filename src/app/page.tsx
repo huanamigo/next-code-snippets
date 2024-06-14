@@ -6,7 +6,7 @@ export default async function Home() {
 
   return (
     <div>
-      <div className="flex justify-between pb-4 pt-4">
+      <div className="flex justify-between items-center pb-4 pt-4">
         <h1>Snippets</h1>
         <Link className="border p-2 rounded" href={'/snippets/new'}>
           New snippet

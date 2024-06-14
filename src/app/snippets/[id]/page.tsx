@@ -1,8 +1,8 @@
 import { deleteSnippet } from '@/actions/actions';
+import ReadOnlyEditor from '@/components/readonly-editor';
 import { db } from '@/db';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { startTransition } from 'react';
 
 interface SnippetShowPageProps {
   params: {
@@ -40,7 +40,8 @@ const SnippetShowPage = async (props: SnippetShowPageProps) => {
         </div>
       </div>
       <pre className="p-3 border rounded ">
-        <code>{snippet.code}</code>
+        {/* <code>{snippet.code}</code> */}
+        <ReadOnlyEditor snippet={snippet} />
       </pre>
     </div>
   );
